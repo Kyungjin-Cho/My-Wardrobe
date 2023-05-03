@@ -1,5 +1,5 @@
-# Kokoa Clone 2022 Update
-## by Kyungjin Cho
+# My Wardrobe
+## by Team 'My Wardrobe'
 > This repository will be used for the 'My Wardrobe(Student Entrepreneur Awards)'
 
 ## Live Demo

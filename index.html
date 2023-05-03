@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-  <title>My Shopping Platform</title>
-</head>
-<body>
-  <header>
-    <div class="top-bar">
-      <a href="#" class="home-button">My Wardrobe</a>
-      <input type="search" placeholder="Search" class="search-input">
-      <div class="icons">
-        <span class="shopping-cart-icon">🛒</span>
-        <span class="wardrobe-icon">👚</span>
+  <head>
+    <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to My Wardrobe</title>
+  </head>
+  <body>
+    <div class="status-bar">
+      <div class="status-bar__column">
+        <span>No Service</span>
+        <i class="fas fa-wifi"></i>
+      </div>
+      <div class="status-bar__column">
+        <span>18:43</span>
+      </div>
+      <div class="status-bar__column">
+        <span>110%</span>
+        <i class="fas fa-battery-full fa-lg"></i>
+        <i class="fas fa-bolt"></i>
       </div>
     </div>
-    <nav>
-      <ul class="nav-menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Ranking</a></li>
-        <li><a href="#">Recommendation</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <div class="item">
-      <img src="path/to/image.jpg" alt="Item Image" class="item-image">
-      <div class="item-info">
-        <p class="brand-name">Brand Name</p>
-        <p class="item-name">Item Name</p>
-        <p class="price">$100</p>
-      </div>
+    <header class="welcome-header">
+      <h1 class="welcome-header__title">Welcome to My Wardrobe</h1>
+      <p class="welcome-header__text">
+        If you have a My Wardrobe Account, log in with your email or phone number.
+      </p>
+    </header>
+
+    <form action="home.html" method="get" id="login-form">
+      <input name="username" type="text" placeholder="Email or phone number" />
+      <input name="password" type="password" placeholder="Password" />
+      <input type="submit" value="Log In" />
+      <a href="#">Find My Wardrobe Account or Password</a>
+    </form>
+
+    <div id="no-mobile">
+      <span>Your screen is too big🙄</span>
     </div>
-  </main>
 
-  <footer>
-    <ul class="footer-menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Menu</a></li>
-      <li><a href="#">My Page</a></li>
-    </ul>
-  </footer>
-</body>
-</html>
+    <script
+      src="https://kit.fontawesome.com/6478f529f2.js"
+      crossorigin="anonymous"
+    ></script>
+
+  </body>

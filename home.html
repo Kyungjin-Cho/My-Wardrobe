@@ -40,7 +40,7 @@
     <main class="friends-screen">
       <div class="friends-screen__channel">
         <div class="friends-screen__channel-header">
-          <span>Gym+Coffee</span>
+          <span>Brand ABC</span>
           <i class="fa-solid fa-chevron-up fa-xs"></i>
         </div>
         <div class="user-component">
@@ -53,58 +53,53 @@
           </div>
           <div class="user-component__column">
             <div>
+              <button class="add-btn">Add</button>
+              <button class="try-btn">Try</button>
+            </div>
+          </div>
+        </div>
+        <div class="user-component">
+          <div class="user-component__column last">
+            <img src="img/jeans.jpg" class="user-component__avatar"/>
+            <div class="user-component__text">
+              <h4 class="user-component__title">Jeans</h4>
+              <h6 class="user-component__subtitle">$300</h6>
+            </div>
+          </div>
+          <div class="user-component__column">
+            <div>
+              <button class="add-btn">Add</button>
+              <button class="try-btn">Try</button>
             </div>
           </div>
         </div>
         <div class="user-component">
           <div class="user-component__column">
-            <img src="img/skirt.jpg" class="user-component__avatar"/>
+            <img src="img/shirts.jpg" class="user-component__avatar"/>
             <div class="user-component__text">
-              <h4 class="user-component__title">Skirt</h4>
-              <h6 class="user-component__subtitle">$200</h6>
+              <h4 class="user-component__title">Shirts</h4>
+              <h6 class="user-component__subtitle">$250</h6>
             </div>
           </div>
           <div class="user-component__column">
             <div>
+              <button class="add-btn">Add</button>
+              <button class="try-btn">Try</button>
             </div>
           </div>
         </div>
         <div class="user-component">
           <div class="user-component__column">
-            <img src="img/skirt.jpg" class="user-component__avatar"/>
+            <img src="img/jacket.jpg" class="user-component__avatar"/>
             <div class="user-component__text">
-              <h4 class="user-component__title">Skirt</h4>
-              <h6 class="user-component__subtitle">$200</h6>
+              <h4 class="user-component__title">Jacket</h4>
+              <h6 class="user-component__subtitle">$400</h6>
             </div>
           </div>
           <div class="user-component__column">
             <div>
-            </div>
-          </div>
-        </div>
-        <div class="user-component">
-          <div class="user-component__column">
-            <img src="img/skirt.jpg" class="user-component__avatar"/>
-            <div class="user-component__text">
-              <h4 class="user-component__title">Skirt</h4>
-              <h6 class="user-component__subtitle">$200</h6>
-            </div>
-          </div>
-          <div class="user-component__column">
-            <div>
-            </div>
-          </div>
-        </div>
-        <div class="user-component">
-          <div class="user-component__column">
-            <img src="img/skirt.jpg" class="user-component__avatar"/>
-            <div class="user-component__text">
-              <h4 class="user-component__title">Skirt</h4>
-              <h6 class="user-component__subtitle">$200</h6>
-            </div>
-          </div>
-          <div class="user-component__column">
-            <div>
+              <button class="add-btn">Add</button>
+              <button class="try-btn">Try</button>
             </div>
           </div>
         </div>
@@ -145,11 +140,31 @@
     </div>
 
     <div id="no-mobile">
-      <img src="img/mobile.png">
       <span>Your screen is too big🙄</span>
     </div>
 
     <script src="https://kit.fontawesome.com/dfecf86ffa.js" crossorigin="anonymous"></script>
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const addBtns = document.querySelectorAll(".add-btn");
+    
+        addBtns.forEach((btn) => {
+          btn.addEventListener("click", function (event) {
+            const itemElement = event.target.closest(".user-component");
+            const item = {
+              title: itemElement.querySelector(".user-component__title").textContent,
+              subtitle: itemElement.querySelector(".user-component__subtitle").textContent,
+              imgSrc: itemElement.querySelector(".user-component__avatar").src,
+            };
+    
+            let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            cartItems.push(item);
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+          });
+        });
+      });
     </script>
 
   </body>

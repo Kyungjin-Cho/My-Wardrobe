@@ -29,6 +29,25 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.add-btn,
+.try-btn {
+  background-color: #C9DECF;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.try-btn {
+  background-color: #F1BCAE;
+}
+
 @keyframes highSplashScren {
   from {
     opacity: 1;

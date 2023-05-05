@@ -1,77 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="css/styles.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wardrobe - My Wardrobe</title>
-  </head>
-  <body>
-    <div class="status-bar">
-      <div class="status-bar__column">
-        <span>No Service</span>
-        <i class="fas fa-wifi"></i>
-      </div>
-      <div class="status-bar__column">
-        <span>18:43</span>
-      </div>
-      <div class="status-bar__column">
-        <span>110%</span>
-        <i class="fas fa-battery-full fa-lg"></i>
-        <i class="fas fa-bolt"></i>
-      </div>
-    </div>
 
-    <header class="screen-header">
-      <h1 class="screen-header__title">Wardrobe</h1>
-      <div class="screen-header__icons">
-        <span><i class="fa-solid fa-magnifying-glass fa-lg"></i></span>
-        <span><a href="settings.html">
+<head>
+  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wardrobe - My Wardrobe</title>
+</head>
+
+<body>
+  <div class="status-bar">
+    <div class="status-bar__column">
+      <span>No Service</span>
+      <i class="fas fa-wifi"></i>
+    </div>
+    <div class="status-bar__column">
+      <span>18:43</span>
+    </div>
+    <div class="status-bar__column">
+      <span>110%</span>
+      <i class="fas fa-battery-full fa-lg"></i>
+      <i class="fas fa-bolt"></i>
+    </div>
+  </div>
+
+  <header class="screen-header">
+    <h1 class="screen-header__title">Wardrobe</h1>
+    <div class="screen-header__icons">
+      <span><i class="fa-solid fa-magnifying-glass fa-lg"></i></span>
+      <span><a href="settings.html">
           <i class="fa-solid fa-gear fa-lg"></i>
         </a></span>
-      </div>
-    </header>
-
-
-    <main class="main-screen">
-    
-    </main>
-
-    
-
-    <nav class="nav">
-      <ul class="nav__list">
-        <li class="nav__btn">
-          <a class="nav__link" href="home.html">
-            <i class="fa-solid fa-house fa-2x"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="wardrobe.html">
-            <span class="nav__notification badge">4</span>
-            <i class="fa-solid fa-shirt fa-2x"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="cart.html">
-            <i class="fa-solid fa-cart-shopping fa-2x"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="more.html">
-            <span class="nav__dot"></span>
-            <i class="fa-solid fa-ellipsis fa-2x"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <div id="no-mobile">
-      <img src="img/mobile.png">
-      <span>Your screen is too big🙄</span>
     </div>
+  </header>
 
-    <script src="https://kit.fontawesome.com/dfecf86ffa.js" crossorigin="anonymous"></script>
-    </script>
 
-  </body>
+  <main class="main-screen">
+    <div id="container"></div>
+  </main>
+
+
+
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__btn">
+        <a class="nav__link" href="home.html">
+          <i class="fa-solid fa-house fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav__btn">
+        <a class="nav__link" href="wardrobe.html">
+          <span class="nav__notification badge">4</span>
+          <i class="fa-solid fa-shirt fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav__btn">
+        <a class="nav__link" href="cart.html">
+          <i class="fa-solid fa-cart-shopping fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav__btn">
+        <a class="nav__link" href="more.html">
+          <span class="nav__dot"></span>
+          <i class="fa-solid fa-ellipsis fa-2x"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="no-mobile">
+    <span>Your screen is too big🙄</span>
+  </div>
+
+  <script src="https://kit.fontawesome.com/dfecf86ffa.js" crossorigin="anonymous"></script>
+  </script>
+
+  <script type="module">
+    import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+    import { GLTFLoader } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/GLTFLoader.js';
+
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    const container = document.getElementById("container");
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById("container").appendChild(renderer.domElement);
+
+    window.addEventListener('resize', onWindowResize, false);
+
+    function onWindowResize() {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    // Add a directional light
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(1, 1, 1).normalize();
+    scene.add(light);
+
+    // Load the GLTF model
+    const loader = new THREE.GLTFLoader();
+    loader.load(
+      "character1GLTF/scene.gltf",
+      function (gltf) {
+        // Add the loaded model to the scene
+        scene.add(gltf.scene);
+
+        // Set the camera position and target
+        camera.position.set(0, 1, 5);
+        camera.lookAt(gltf.scene.position);
+      },
+      undefined,
+      function (error) {
+        console.error('Error loading GLTF model:', error);
+      }
+    );
+
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+
+</body>

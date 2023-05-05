@@ -34,7 +34,19 @@
 
 
     <main class="main-screen">
-      
+      <table class="cart-items">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </main>
 
     <nav class="nav">
@@ -65,11 +77,38 @@
     </nav>
 
     <div id="no-mobile">
-      <img src="img/mobile.png">
       <span>Your screen is too big🙄</span>
     </div>
 
     <script src="https://kit.fontawesome.com/dfecf86ffa.js" crossorigin="anonymous"></script>
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartItemsElement = document.querySelector(".cart-items tbody");
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    
+        cartItems.forEach((item, index) => {
+          const tableRow = document.createElement("tr");
+          tableRow.classList.add("cart-item");
+    
+          tableRow.innerHTML = `
+            <td><img src="${item.imgSrc}" class="cart-item__avatar"></td>
+            <td><h4 class="cart-item__title">${item.title}</h4></td>
+            <td><h6 class="cart-item__subtitle">${item.subtitle}</h6></td>
+            <td><input type="number" min="1" class="cart-item__quantity" value="1"></td>
+            <td><button class="cart-item__delete">Delete</button></td>
+          `;
+    
+          tableRow.querySelector(".cart-item__delete").addEventListener("click", () => {
+            cartItems.splice(index, 1);
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            tableRow.remove();
+          });
+    
+          cartItemsElement.appendChild(tableRow);
+        });
+      });
     </script>
 
   </body>
